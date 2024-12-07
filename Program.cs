@@ -1,18 +1,31 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
-namespace LabWork
+class Program
 {
-    // Даний проект є шаблоном для виконання лабораторних робіт
-    // з курсу "Об'єктно-орієнтоване програмування та патерни проектування"
-    // Необхідно змінювати і дописувати код лише в цьому проекті
-    // Відео-інструкції щодо роботи з github можна переглянути 
-    // за посиланням https://www.youtube.com/@ViktorZhukovskyy/videos 
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        // Заданий текст
+        string text = @"
+            Інформатика - це наука про інформацію.
+            Інформатика важлива для розвитку технологій.
+            Математика і інформатика взаємопов'язані.
+            Фізика також пов'язана з технологіями.
+            Інформатика як предмет викладається у школах.
+        ";
+
+        // Регулярний вираз для пошуку рядків, які починаються зі слова "Інформатика"
+        string pattern = @"^\s*Інформатика\b";
+
+        // Пошук за допомогою регулярного виразу
+        MatchCollection matches = Regex.Matches(text, pattern, RegexOptions.Multiline);
+
+        // Виведення результатів
+        Console.WriteLine($"Кількість рядків, які починаються зі слова 'Інформатика': {matches.Count}");
+        Console.WriteLine("Рядки:");
+        foreach (Match match in matches)
         {
-            
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(match.Value.Trim());
         }
     }
 }
